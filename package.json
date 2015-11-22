@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/numa08/toggl-team/issues"
   },
-  "homepage": "https://github.com/numa08/toggl-team"
+  "homepage": "https://github.com/numa08/toggl-team",
+  "dependencies": {
+    "toggl-api": "0.0.3"
+  }
 }
