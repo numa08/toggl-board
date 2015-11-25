@@ -1,0 +1,24 @@
+{
+  "name": "toggl-team",
+  "description": "Show toggl status for team.",
+  "main": "main/index.js",
+  "authors": [
+    "numa08"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "toggl"
+  ],
+  "homepage": "https://github.com/numa08/toggl-team",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "marked": "~0.3.5"
+  }
+}
