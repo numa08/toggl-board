@@ -1,0 +1,8 @@
+body {
+	background-color: rgb(245, 245, 245);
+}
+
+.page-wrapper {
+	min-height: 100%;
+	padding: 0 30px;
+}
