@@ -11,7 +11,7 @@
 	<input type="text" ng-model="apiToken"><button ng-click="addUser()">Add</button>
 	<ul ng-repeat="user in userDataCollection">
 		<li>
-			{{ user.fullname }}
+			{{ user.fullname }} is doing now {{ user.current_time_entry.description }}
 		</li>
 	</ul>
 </body>

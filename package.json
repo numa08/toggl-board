@@ -4,7 +4,7 @@
   "description": "Show toggl status for team.",
   "main": "main/index.js",
   "scripts": {
-    "start" : "electron main/index.js"
+    "start" : "electron main/main.js"
   },
   "repository": {
     "type": "git",
