@@ -10,8 +10,11 @@
 	<script src="js/toggl-module.js"></script>
 	<input type="text" ng-model="apiToken"><button ng-click="addUser()">Add</button>
 	<ul ng-repeat="user in userDataCollection">
-		<li>
+		<li ng-if="user.doing_now" id="{{ user.fullname }}">
 			{{ user.fullname }} is doing now {{ user.current_time_entry.description }}
+		</li>
+		<li ng-if="!user.doing_now" id="{{ user.fullname }}">
+			{{ user.fullname }} does not do something.
 		</li>
 	</ul>
 </body>

@@ -15,7 +15,8 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 			if(lastTimeEntry.duration < 0) {
 				currentTimeEntry = lastTimeEntry;
 			}
-			userData.current_time_entry = currentTimeEntry;			
+			userData.current_time_entry = currentTimeEntry;
+			userData.doing_now = currentTimeEntry != null;	
 			$scope.$apply(function() {
 				$scope.userDataCollection.push(userData);				
 			});
