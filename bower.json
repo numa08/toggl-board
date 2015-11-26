@@ -19,6 +19,6 @@
     "tests"
   ],
   "dependencies": {
-    "marked": "~0.3.5"
+    "angular": "~1.4.8"
   }
 }
