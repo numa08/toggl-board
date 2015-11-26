@@ -56,6 +56,8 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 			var currentTimeEntry = null;
 			if(lastTimeEntry.duration < 0) {
 				currentTimeEntry = lastTimeEntry;
+				currentTimeEntry.spent = new Date().getTime() - Date.parse(currentTimeEntry.start);
+				currentTimeEntry.spent_sec = Math.ceil(currentTimeEntry.spent / 1000);
 			}
 			userData.current_time_entry = currentTimeEntry;
 			userData.doing_now = currentTimeEntry != null;	
@@ -74,6 +76,8 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 			var currentTimeEntry = null;
 			if(lastTimeEntry.duration < 0) {
 				currentTimeEntry = lastTimeEntry;
+				currentTimeEntry.spent = new Date().getTime() - Date.parse(currentTimeEntry.start);
+				currentTimeEntry.spent_sec = Math.ceil(currentTimeEntry.spent / 1000);
 			}
 			userData.current_time_entry = currentTimeEntry;
 			userData.doing_now = currentTimeEntry != null;	
