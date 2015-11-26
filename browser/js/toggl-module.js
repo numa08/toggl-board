@@ -4,7 +4,9 @@ var TogglClient = require('toggl-api');
 var togglBoard = angular.module('TogglBoard', []);
 togglBoard.controller('TogglController', ['$scope', function($scope) {
 	
-	$scope.userDataCollection = [];
+	$scope.userDataContainer = {
+		users: []
+	};
 	
 	$scope.addUser = function() {
 		 new TogglClient({apiToken: $scope.apiToken})
@@ -15,7 +17,7 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 			}
 			localStorage.setItem(userData.fullname, userData.api_token);
 			
-			appendUserDataCollection(userData);			
+			appendUserDataContainer(userData);			
 		 });
 	};
 	
@@ -30,13 +32,27 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 					return;
 				}
 
-				appendUserDataCollection(userData);				
+				appendUserDataContainer(userData);
+				setInterval(function() {
+					for(var i = 0; i < localStorage.length; i++) {
+						var key = localStorage.key(i);
+						var apiToken = localStorage.getItem(key);
+						new TogglClient({apiToken: apiToken})
+						.getUserData({with_related_data: true}, function(err, userData) {
+							if(err) {
+								console.error(err);
+								return;
+							}
+							updateUserDataContainer(userData);
+						})
+					}
+				}, 1000);		
 			});
 		}
 	})();
 
-	var appendUserDataCollection = function(userData) {
-					var lastTimeEntry = userData.time_entries[userData.time_entries.length - 1];
+	var appendUserDataContainer = function(userData) {
+			var lastTimeEntry = userData.time_entries[userData.time_entries.length - 1];
 			var currentTimeEntry = null;
 			if(lastTimeEntry.duration < 0) {
 				currentTimeEntry = lastTimeEntry;
@@ -44,7 +60,26 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 			userData.current_time_entry = currentTimeEntry;
 			userData.doing_now = currentTimeEntry != null;	
 			$scope.$apply(function() {
-				$scope.userDataCollection.push(userData);				
+				$scope.userDataContainer.users.push(userData);
+				$scope.userDataContainer[userData.fullname] = $scope.userDataContainer.users.length - 1;			
 			});
 	};
+	
+	var updateUserDataContainer = function(userData) {
+			var index = $scope.userDataContainer[userData.fullname];
+			if(index > $scope.userDataContainer.users.length) {
+				return;
+			}
+			var lastTimeEntry = userData.time_entries[userData.time_entries.length - 1];
+			var currentTimeEntry = null;
+			if(lastTimeEntry.duration < 0) {
+				currentTimeEntry = lastTimeEntry;
+			}
+			userData.current_time_entry = currentTimeEntry;
+			userData.doing_now = currentTimeEntry != null;	
+			$scope.$apply(function() {
+				$scope.userDataContainer.users[index] = userData;
+			});
+	};
+
 }]);
