@@ -1,5 +1,7 @@
 'use strict';
 var TogglClient = require('toggl-api');
+var moment = require('moment');
+require('moment-duration-format');
 
 var togglBoard = angular.module('TogglBoard', []);
 togglBoard.controller('TogglController', ['$scope', function($scope) {
@@ -56,8 +58,8 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 			var currentTimeEntry = null;
 			if(lastTimeEntry.duration < 0) {
 				currentTimeEntry = lastTimeEntry;
-				currentTimeEntry.spent = new Date().getTime() - Date.parse(currentTimeEntry.start);
-				currentTimeEntry.spent_sec = Math.ceil(currentTimeEntry.spent / 1000);
+				var range = new Date().getTime() - Date.parse(currentTimeEntry.start);
+				currentTimeEntry.duration_output = moment.duration(range, "ms").format("h [hrs], m [min], s [sec]");
 			}
 			userData.current_time_entry = currentTimeEntry;
 			userData.doing_now = currentTimeEntry != null;	
@@ -76,8 +78,8 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 			var currentTimeEntry = null;
 			if(lastTimeEntry.duration < 0) {
 				currentTimeEntry = lastTimeEntry;
-				currentTimeEntry.spent = new Date().getTime() - Date.parse(currentTimeEntry.start);
-				currentTimeEntry.spent_sec = Math.ceil(currentTimeEntry.spent / 1000);
+				var range = new Date().getTime() - Date.parse(currentTimeEntry.start);
+				currentTimeEntry.duration_output = moment.duration(range, "ms").format("h [hrs], m [min], s [sec]");
 			}
 			userData.current_time_entry = currentTimeEntry;
 			userData.doing_now = currentTimeEntry != null;	

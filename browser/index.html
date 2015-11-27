@@ -11,7 +11,7 @@
 	<input type="text" ng-model="apiToken"><button ng-click="addUser()">Add</button>
 	<ul ng-repeat="user in userDataContainer.users">
 		<li ng-if="user.doing_now" id="{{ user.fullname }}">
-			{{ user.fullname }} is doing now {{ user.current_time_entry.description }} spend {{ user.current_time_entry.spent_sec }} sec
+			{{ user.fullname }} is doing now {{ user.current_time_entry.description }} spend {{ user.current_time_entry.duration_output }}
 		</li>
 		<li ng-if="!user.doing_now" id="{{ user.fullname }}">
 			{{ user.fullname }} does not do something.
