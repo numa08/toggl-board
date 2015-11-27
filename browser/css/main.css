@@ -2,7 +2,22 @@ body {
 	background-color: rgb(245, 245, 245);
 }
 
+input {
+	width: 100%;
+}
+
 .page-wrapper {
 	min-height: 100%;
 	padding: 0 30px;
+}
+
+.content-wrapper {
+	margin-top: 90px;
+}
+
+.button-success {
+	background: rgb(28, 184, 65);
+	color: white;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
