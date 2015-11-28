@@ -7,6 +7,17 @@ input {
 	outline: none;
 }
 
+ul {
+	list-style: none;
+}
+
+li {
+	height: 94px;
+	font-size: 14px;
+	border-bottom: 1px solid #e6e6e6;
+	position: relative;
+}
+
 .page-wrapper {
 	min-height: 100%;
 	padding: 0 30px;
@@ -15,7 +26,7 @@ input {
 .content-wrapper {
 }
 
-.token {
+.row {
 	width: 1152px;
 	max-width: 100%;
 	min-width: 900px;
@@ -42,4 +53,8 @@ input {
 .button-large {
 	font-size: 24px;
 	padding: 15px 24px 16px 24px;
+}
+
+.entry {
+	padding: 41px 0px;
 }

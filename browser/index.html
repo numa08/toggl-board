@@ -10,7 +10,7 @@
 	<script src="js/toggl-module.js"></script>
 	<div class="page-wrapper">
 		<div class="content-wrapper">
-			<div class="token">
+			<div class="row">
 				<div class="pure-g">
 					<div class="pure-u-4-5 description-container">
 						<input class="input-description" type="text" ng-model="apiToken" placeholder="Who is your new team member?">		
@@ -20,14 +20,35 @@
 					</div>
 				</div>
 			</div>
-			<ul ng-repeat="user in userDataContainer.users">
+			<div class="row">
+			<ul id="user-entries" ng-repeat="user in userDataContainer.users">
 				<li ng-if="user.doing_now" id="{{ user.fullname }}">
-					{{ user.fullname }} is doing now {{ user.current_time_entry.description }} spend {{ user.current_time_entry.duration_output }}
+					<div class="pure-g">
+						<div class="pure-u-1-12"><img src="{{ user.image_url }}" alt="" class="pure-img"></div>
+						<div class="pure-u-7-12">
+							<span class="entry">
+								{{ user.fullname }} is doing now {{ user.current_time_entry.description }}
+							</span>
+						</div>
+						<div class="pure-u-1-6">
+							<span class="entry">
+								{{ user.current_time_entry.duration_output }}																
+							</span>
+						</div>
+					</div>
 				</li>
 				<li ng-if="!user.doing_now" id="{{ user.fullname }}">
-					{{ user.fullname }} does not do something.
+					<div class="pure-g">
+						<div class="pure-u-1-12"><img src="{{ user.image_url }}" alt="" class="pure-img"></div>
+						<div class="pure-u-11-12">
+							<span class="entry">
+								{{ user.fullname }} does not do something.
+							</span>
+						</div>
+					</div>
 				</li>
 			</ul>		
+			</div>
 		</div>
 	</div>
 </body>
