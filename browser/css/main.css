@@ -9,13 +9,15 @@ input {
 
 ul {
 	list-style: none;
+	padding-left: 0px;
 }
 
 li {
-	height: 94px;
-	font-size: 14px;
+	height: 72px;
+	font-size: 18px;
 	border-bottom: 1px solid #e6e6e6;
 	position: relative;
+	padding-top: 5px;
 }
 
 .page-wrapper {
@@ -55,6 +57,12 @@ li {
 	padding: 15px 24px 16px 24px;
 }
 
-.entry {
-	padding: 41px 0px;
+.avater {
+	width: 64px;
+	height: 64px;
+	margin-right: 10px;
+}
+
+.user-name {
+	margin: 0;
 }

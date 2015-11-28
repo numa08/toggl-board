@@ -24,26 +24,26 @@
 			<ul id="user-entries" ng-repeat="user in userDataContainer.users">
 				<li ng-if="user.doing_now" id="{{ user.fullname }}">
 					<div class="pure-g">
-						<div class="pure-u-1-12"><img src="{{ user.image_url }}" alt="" class="pure-img"></div>
+						<div class="pure-u"><img src="https://ja.gravatar.com/userimage/33502174/47f96a6b64cc48b076bd554b3efbaf31.jpg?size=200" alt="" class="avater"></div>
 						<div class="pure-u-7-12">
-							<span class="entry">
-								{{ user.fullname }} is doing now {{ user.current_time_entry.description }}
-							</span>
+							<h4 class="user-name">{{ user.fullname }}</h4>
+							<p>
+								{{ user.current_time_entry.description }}
+							</p>
 						</div>
 						<div class="pure-u-1-6">
-							<span class="entry">
-								{{ user.current_time_entry.duration_output }}																
-							</span>
+							{{ user.current_time_entry.duration_output }}																
 						</div>
 					</div>
 				</li>
 				<li ng-if="!user.doing_now" id="{{ user.fullname }}">
 					<div class="pure-g">
-						<div class="pure-u-1-12"><img src="{{ user.image_url }}" alt="" class="pure-img"></div>
+						<div class="pure-u"><img src="{{ user.image_url }}" alt="" class="avater"></div>
 						<div class="pure-u-11-12">
-							<span class="entry">
-								{{ user.fullname }} does not do something.
-							</span>
+							<h4 class="user-name">{{ user.fullname }}</h4>
+							<p>
+								does not do something.
+							</p>
 						</div>
 					</div>
 				</li>
