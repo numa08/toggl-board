@@ -3,7 +3,8 @@ body {
 }
 
 input {
-	width: 100%;
+	border: none;
+	outline: none;
 }
 
 .page-wrapper {
@@ -12,7 +13,23 @@ input {
 }
 
 .content-wrapper {
-	margin-top: 90px;
+}
+
+.token {
+	width: 1152px;
+	max-width: 100%;
+	min-width: 900px;
+	margin: 96px auto;
+}
+
+.description-container {
+	background: #fff;
+}
+
+.input-description {
+	font-size: 18px;
+	width: 100%;
+	padding: 14px 0px 16px 18px;
 }
 
 .button-success {
@@ -20,4 +37,9 @@ input {
 	color: white;
 	border-radius: 4px;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-large {
+	font-size: 24px;
+	padding: 15px 24px 16px 24px;
 }
