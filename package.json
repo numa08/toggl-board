@@ -2,7 +2,7 @@
   "name": "toggl-team",
   "version": "0.0.1",
   "description": "Show toggl status for team.",
-  "main": "main/index.js",
+  "main": "main/main.js",
   "scripts": {
     "start": "electron main/main.js"
   },
