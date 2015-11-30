@@ -48,7 +48,7 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 							updateUserDataContainer(userData);
 						})
 					}
-				}, 1000);		
+				}, 10 * 1000);		
 			});
 		}
 	})();
