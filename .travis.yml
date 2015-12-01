@@ -1,0 +1,10 @@
+language: node_js
+
+node_js:
+  - "5.1.0"
+  
+before_script:
+  - npm install -g electron-packager
+  
+script:
+  - electron-packager ./ --platform=linux,win32,darwin --arch=x64 --version=0.35.0 --overwrite
