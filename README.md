@@ -19,3 +19,7 @@ Please download binary for your architecture.
 !()[./static/cap.PNG]
 
 Insert you and your team member's [Toggl API TOKEN](https://toggl.com/app/profile)
+
+# License
+
+MIT
