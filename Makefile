@@ -8,6 +8,6 @@ build:
 	rm -rf toggl-board-win32-x64
 	
 destribute:
-	 @curl -O --user $(BINTRAY_AUTHORICATE) -T "toggl-board-darwin-x64.zip" -O  https://api.bintray.com/content/numa08/generic/toggl-board/$(VERSION)/toggl-board-darwin-x64.$(VERSION).zip    
-	 @curl -O --user $(BINTRAY_AUTHORICATE) -T "toggl-board-linux-x64.zip" -O  https://api.bintray.com/content/numa08/generic/toggl-board/$(VERSION)/toggl-board-linux-x64.$(VERSION).zip
-	 @curl -O --user $(BINTRAY_AUTHORICATE) -T "toggl-board-win32-x64.zip" -O  https://api.bintray.com/content/numa08/generic/toggl-board/$(VERSION)/toggl-board-win32-x64.$(VERSION).zip
+	 @curl -O --user $(BINTRAY_AUTHORICATE) -T "toggl-board-darwin-x64.zip" -O  https://api.bintray.com/content/numa08/generic/toggl-board/$(VERSION)/toggl-board-darwin-x64.$(VERSION).zip?publish=1   
+	 @curl -O --user $(BINTRAY_AUTHORICATE) -T "toggl-board-linux-x64.zip" -O  https://api.bintray.com/content/numa08/generic/toggl-board/$(VERSION)/toggl-board-linux-x64.$(VERSION).zip?publish=1
+	 @curl -O --user $(BINTRAY_AUTHORICATE) -T "toggl-board-win32-x64.zip" -O  https://api.bintray.com/content/numa08/generic/toggl-board/$(VERSION)/toggl-board-win32-x64.$(VERSION).zip?publish=1
