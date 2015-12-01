@@ -16,7 +16,7 @@ Please download binary for your architecture.
  
 ## Run
 
-!()[./static/cap.PNG]
+![](./static/cap.PNG])
 
 Insert you and your team member's [Toggl API TOKEN](https://toggl.com/app/profile)
 
