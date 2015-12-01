@@ -4,7 +4,9 @@ node_js:
   - "5.1.0"
   
 before_script:
-  - npm install -g electron-packager
+  - npm install -g electron-packager bower
+  - bower install
   
 script:
   - make
+  - make destribute "BINTRAY_AUTHORICATE= ${BINTRAY_AUTHORICATE}" "VERSION= ${TRAVIS_COMMIT}" 
