@@ -1,12 +1,13 @@
 language: node_js
-
 node_js:
-  - "5.1.0"
-  
+- 5.1.0
 before_script:
-  - npm install -g electron-packager bower
-  - bower install
-  
+- npm install -g electron-packager bower
+- bower install
 script:
-  - make
-  - make destribute "BINTRAY_AUTHORICATE= ${BINTRAY_AUTHORICATE}" "VERSION= ${TRAVIS_COMMIT}" 
+- make
+- BINTRAY_AUTHORICATE=${BINTRAY_AUTHORICATE} VERSION=${TRAVIS_COMMIT} make destribute
+
+env:
+  global:
+    secure: uXmn6XHSdbJvdhe4M6dBEaXZk0Xlsjucdrb3ykDoencwXTvt1c/j0Exexh4IDiwb5NdfTS2NlngceF849uMngt0bFP3i0WUWm9AvoCELePgyNOlo7iscZc+Idd+IYgU61fgjjPr9wv3eL/dkrATkWDwMfENK85ABsE1HCdb+k/M1rwt2S26tdhnLiP0FHEjqUMBg0dK7UG3mLl9YLbvdtXIVt42uaZBmOORpQYKiSMOtQLZlFEbAE8hkQblLIpBXpNlM/vezECTGnMUW4zrBTgjsyfGwN1S8R5dtYel0WhXTFgvaz7EhT5mM+6eatgBGyd+lUuOeK8Odnt8leAzsBkxl0wa2Hg/rB5uJtozSzBedYBvxz4OU8CJVgEbJUIxwAMWEyYhXxa7uCo0kp1WUy9lc02QL5tTbHhaABOHTV1rfLotoFuTwweYnYewwgON3A2966HLGSLIP/FO8/m0mOMMUl8DUdKhqr6zHadU7oSb43S5NRzzqkpXbE/idWwjU250YhMSIcjS4SUKoX8isLTZMOPpTvfpdCKNwlfnYMv2lg67Tnl3JUkslQ+bgqfI2EiZNsOh02vqczeqOP+m4VZS2Fw1JQRlB4r4Y/KVOgx0Mtv+LFkrWBd2eL2g/0W5hqmcNrOJlLVN3uLmUoEAAmFJHiaakWgH/zS+eeZtfKT0=
