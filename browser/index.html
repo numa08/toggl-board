@@ -2,7 +2,6 @@
 <html ng-app="TogglBoard">
 <head>
 	<title>Toggl Board</title>
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-controller="TogglController">
@@ -22,28 +21,22 @@
 			</div>
 			<div class="row">
 			<ul id="user-entries" ng-repeat="user in userDataContainer.users">
-				<li ng-if="user.doing_now" id="{{ user.fullname }}">
-					<div class="pure-g">
-						<div class="pure-u"><img src="https://ja.gravatar.com/userimage/33502174/47f96a6b64cc48b076bd554b3efbaf31.jpg?size=200" alt="" class="avater"></div>
-						<div class="pure-u-7-12">
+				<li id="{{ user.fullname }}">
+					<div class="user-entry">
+						<div class="avatar-container">
+							<img src="{{ user.image_url }}" alt="" class="avater">
+						</div>
+						<div class="content">
 							<h4 class="user-name">{{ user.fullname }}</h4>
-							<p>
+							<p class="description" ng-if="user.doing_now">
 								{{ user.current_time_entry.description }}
 							</p>
-						</div>
-						<div class="pure-u-1-6">
-							{{ user.current_time_entry.duration_output }}																
-						</div>
-					</div>
-				</li>
-				<li ng-if="!user.doing_now" id="{{ user.fullname }}">
-					<div class="pure-g">
-						<div class="pure-u"><img src="{{ user.image_url }}" alt="" class="avater"></div>
-						<div class="pure-u-11-12">
-							<h4 class="user-name">{{ user.fullname }}</h4>
-							<p>
+							<p class="description" ng-if="!user.doing_now">
 								does not do something.
 							</p>
+						</div>
+						<div class="time" ng-if="user.doing_now">
+							{{ user.current_time_entry.duration_output }}												
 						</div>
 					</div>
 				</li>
