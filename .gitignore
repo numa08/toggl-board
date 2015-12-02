@@ -40,4 +40,5 @@ bower_components
 .bower-tmp
 
 ### Destribute
+build/
 *.zip
