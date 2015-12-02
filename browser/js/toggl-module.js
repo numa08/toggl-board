@@ -5,7 +5,7 @@ const moment = require('moment');
 require('moment-duration-format');
 
 var togglBoard = angular.module('TogglBoard', ['ngDialog']);
-togglBoard.controller('TogglController', function($scope, ngDialog) {
+togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
 	
 	$scope.userDataContainer = {
 		users: []
@@ -46,7 +46,7 @@ togglBoard.controller('TogglController', function($scope, ngDialog) {
 				}
 
 				appendUserDataContainer(userData);
-				setInterval(function() {
+				$interval(function() {
 					for(var i = 0; i < localStorage.length; i++) {
 						var key = localStorage.key(i);
 						var apiToken = localStorage.getItem(key);
@@ -59,7 +59,18 @@ togglBoard.controller('TogglController', function($scope, ngDialog) {
 							updateUserDataContainer(userData);
 						})
 					}
-				}, 10 * 1000);		
+				}, 10 * 1000);
+			
+				$interval(function() {
+					$scope.userDataContainer
+					.users
+					.filter(function(u) {return u.doing_now})
+					.forEach(function(u) {
+						var range = new Date().getTime() - Date.parse(u.current_time_entry.start);
+						u.current_time_entry.duration_output =  moment.duration(range, "ms").format("h [hrs], m [min], s [sec]");
+					});
+				}, 1000);
+
 			});
 		}
 	})();
@@ -76,13 +87,14 @@ togglBoard.controller('TogglController', function($scope, ngDialog) {
 			userData.doing_now = currentTimeEntry != null;	
 			$scope.$apply(function() {
 				$scope.userDataContainer.users.push(userData);
-				$scope.userDataContainer[userData.fullname] = $scope.userDataContainer.users.length - 1;			
 			});
 	};
 	
 	var updateUserDataContainer = function(userData) {
-			var index = $scope.userDataContainer[userData.fullname];
-			if(index > $scope.userDataContainer.users.length) {
+			var index = $scope.userDataContainer.users.findIndex(function(u) {
+				return u.fullname === userData.fullname;
+			});
+			if(index < 0) {
 				return;
 			}
 			var lastTimeEntry = userData.time_entries[userData.time_entries.length - 1];
@@ -94,9 +106,7 @@ togglBoard.controller('TogglController', function($scope, ngDialog) {
 			}
 			userData.current_time_entry = currentTimeEntry;
 			userData.doing_now = currentTimeEntry != null;	
-			$scope.$apply(function() {
-				$scope.userDataContainer.users[index] = userData;
-			});
+			$scope.userDataContainer.users[index] = userData;
 	};
 
 });
