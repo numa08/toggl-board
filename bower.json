@@ -19,6 +19,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.8"
+    "angular": "~1.4.8",
+    "ng-dialog": "~0.5.6"
   }
 }
