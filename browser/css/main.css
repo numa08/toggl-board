@@ -26,30 +26,8 @@ li {
 }
 
 .row {
-	min-width: 50em;
+	min-width: 30em;
 	margin: 2em;
-}
-
-.description-container {
-	background: #fff;
-}
-
-.input-description {
-	font-size: 18px;
-	width: 100%;
-	padding: 14px 0px 16px 18px;
-}
-
-.button-success {
-	background: rgb(28, 184, 65);
-	color: white;
-	border-radius: 4px;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-.button-large {
-	font-size: 24px;
-	padding: 15px 24px 16px 24px;
 }
 
 .avater {
@@ -91,4 +69,23 @@ li {
     border-bottom: 1px solid #e6e6e6;
     float: left;
     width: calc(100% - 4em);
+}
+
+a.add-user-button {
+    background-color: #B5B6BB;
+    color: white;
+    padding: 0.25em 0.7em;
+    font-size: 0.8em;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+a.add-user-button:hover {
+    background-color: #54555A;
+}
+
+.popup-add-user input {
+    width: 100%;
+    font-size: 1em;
+    padding: 0.5em;
 }

@@ -1,17 +1,28 @@
 'use strict';
-var TogglClient = require('toggl-api');
-var moment = require('moment');
+const TogglClient = require('toggl-api');
+const moment = require('moment');
+
 require('moment-duration-format');
 
-var togglBoard = angular.module('TogglBoard', []);
-togglBoard.controller('TogglController', ['$scope', function($scope) {
+var togglBoard = angular.module('TogglBoard', ['ngDialog']);
+togglBoard.controller('TogglController', function($scope, ngDialog) {
 	
 	$scope.userDataContainer = {
 		users: []
 	};
-	
-	$scope.addUser = function() {
-		 new TogglClient({apiToken: $scope.apiToken})
+
+	$scope.openAddUserPrompt = function() {
+        ngDialog.openConfirm({ 
+        	template: 'template-add-user',
+        	closeByDocument: true,
+        	closeByEscape: true
+        }).then(function (apiToken) {
+        	$scope.addUser(apiToken);
+        });
+	}
+
+	$scope.addUser = function(apiToken) {
+		 new TogglClient({apiToken: apiToken})
 		 .getUserData({with_related_data: true}, function(err, userData) {
 			if(err){
 				console.error(err);
@@ -88,4 +99,4 @@ togglBoard.controller('TogglController', ['$scope', function($scope) {
 			});
 	};
 
-}]);
+});
