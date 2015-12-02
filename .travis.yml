@@ -6,7 +6,7 @@ before_script:
 - bower install
 script:
 - make
-- BINTRAY_AUTHORICATE=${BINTRAY_AUTHORICATE} VERSION=${TRAVIS_COMMIT} make destribute
+- BINTRAY_AUTHORICATE=${BINTRAY_AUTHORICATE} VERSION=$(./travis_version.sh) make destribute
 
 env:
   global:
