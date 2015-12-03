@@ -89,3 +89,13 @@ a.add-user-button:hover {
     font-size: 1em;
     padding: 0.5em;
 }
+
+a.bulk-button {
+  background-color: #B5B6BB;
+  color: white;
+  padding: 0.25em 0.7em;
+  font-size: 0.8em;
+  border-radius: 1em;
+  cursor: pointer;
+}
+

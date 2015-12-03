@@ -13,6 +13,60 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
 		users: []
 	};
 
+  $scope.bulkStopAll = function() {
+
+    async.eachSeries($scope.userDataContainer.users, function(user, callback) {
+
+      if (user.doing_now === false) {
+        return callback(null, user);
+      }
+
+      var lastTimeEntry = user.time_entries[user.time_entries.length - 1];
+      var apiToken = user.api_token;
+      var client = new TogglClient({apiToken: apiToken});
+      client.stopTimeEntry(lastTimeEntry.id, function(err, timeEntry) {
+        if (err) {
+          return callback(err, null);
+        }
+
+        client.getUserData({with_related_data: true}, function(err, userData) {
+          updateUserDataContainer(userData);
+          callback(err, user);
+        });
+      });
+    }, function(err) {
+      if (err) {
+        console.error(err);
+      }
+    });
+  }
+
+  $scope.bulkStartAll = function() {
+    var taskname = $scope.taskName;
+    if (taskname && taskname.length > 0 ) {
+
+      async.eachSeries($scope.userDataContainer.users, function(user, callback) {
+
+        var apiToken = user.api_token;
+        var client = new TogglClient({apiToken: apiToken});
+        client.startTimeEntry({"description": taskname}, function(err, timeEntry) {
+          if (err) {
+            return callback(err, null);
+          }
+          client.getUserData({with_related_data: true}, function(err, userData) {
+            updateUserDataContainer(userData);
+            callback(err, user);
+          });
+        });
+
+      }, function(err) {
+        if (err) {
+          console.error(err);
+        }
+      });
+    }
+  }
+
 	$scope.openAddUserPrompt = function() {
         ngDialog.openConfirm({
         	template: 'template-add-user',
