@@ -8,6 +8,7 @@ script:
 - make
 
 deploy:
+  skip_cleanup: true
   provider: script
   script: BINTRAY_AUTHORICATE=${BINTRAY_AUTHORICATE} VERSION=$(./travis_version.sh) make destribute
   on:
