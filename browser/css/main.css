@@ -1,101 +1,101 @@
 @charset "utf-8";
 
 body {
-	font-family: Avenir, HiraginoSans-W3, "Yu Gothic", sans-serif;
-	background-color: rgb(242, 242, 243);
-	-webkit-font-smoothing: antialiased;
-	line-height: 1.5;
-	color: #252527;
-	font-size: 175%;
+  background-color: rgb(242, 242, 243);
+  color: #252527;
+  font-family: Avenir, HiraginoSans-W3, "Yu Gothic", sans-serif;
+  font-size: 175%;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
 }
 
 input {
-	border: none;
-	outline: none;
+  border: 0;
+  outline: none;
 }
 
 ul {
-	list-style: none;
-	padding-left: 0px;
+  list-style: none;
+  padding-left: 0;
 }
 
 li {
-	position: relative;
-	margin-bottom: 2em;
-	height: 4em;
+  height: 4em;
+  margin-bottom: 2em;
+  position: relative;
 }
 
 .row {
-	min-width: 30em;
-	margin: 2em;
+  margin: 2em;
+  min-width: 30em;
 }
 
 .avater {
-	width: 3em;
-	height: 3em;
-	margin-right: 1em;
-	border-radius: 2em;
+  border-radius: 2em;
+  height: 3em;
+  margin-right: 1em;
+  width: 3em;
 }
 
 .user-name {
-	margin: 0;
-	font-size: 0.9em;
-	color: #64666D;
+  color: #64666d;
+  font-size: 0.9em;
+  margin: 0;
 }
 
 .avatar-container {
-    display: inline-block;
-    float: left;
+  display: inline-block;
+  float: left;
 }
 
 .user-entry .description {
-	margin: 0.25em 0 1em 0;
-	font-size: 1.1em;
+  font-size: 1.1em;
+  margin: 0.25em 1em;
 }
 
 .user-entry {
-    position: relative;
+  position: relative;
 }
 
 .user-entry .time {
-    position: absolute;
-    right: 0;
-    top: 1.5em;
-    font-size: 0.9em;
-    color: #4F4F50;
+  color: #4f4f50;
+  font-size: 0.9em;
+  position: absolute;
+  right: 0;
+  top: 1.5em;
 }
 
 .user-entry .content {
-    border-bottom: 1px solid #e6e6e6;
-    float: left;
-    width: calc(100% - 4em);
+  border-bottom: 1px solid #e6e6e6;
+  float: left;
+  width: calc(100% - 4em);
 }
 
 a.add-user-button {
-    background-color: #B5B6BB;
-    color: white;
-    padding: 0.25em 0.7em;
-    font-size: 0.8em;
-    border-radius: 1em;
-    cursor: pointer;
+  background-color: #b5b6bb;
+  border-radius: 1em;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.8em;
+  padding: 0.25em 0.7em;
 }
 
 a.add-user-button:hover {
-    background-color: #54555A;
+  background-color: #54555a;
 }
 
 .popup-add-user input {
-    width: 100%;
-    font-size: 1em;
-    padding: 0.5em;
+  font-size: 1em;
+  padding: 0.5em;
+  width: 100%;
 }
 
 a.bulk-button {
-  background-color: #B5B6BB;
-  color: white;
-  padding: 0.25em 0.7em;
-  font-size: 0.8em;
+  background-color: #b5b6bb;
   border-radius: 1em;
+  color: #ffffff;
   cursor: pointer;
+  font-size: 0.8em;
+  padding: 0.25em 0.7em;
 }
 
