@@ -21,10 +21,10 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
         return callback(null, user);
       }
 
-      var lastTimeEntry = user.time_entries[user.time_entries.length - 1];
+      var id = user.current_time_entry.id;
       var apiToken = user.api_token;
       var client = new TogglClient({apiToken: apiToken});
-      client.stopTimeEntry(lastTimeEntry.id, function(err, timeEntry) {
+      client.stopTimeEntry(id, function(err, timeEntry) {
         if (err) {
           return callback(err, null);
         }
