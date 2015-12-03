@@ -1,7 +1,7 @@
 'use strict';
 const TogglClient = require('toggl-api');
 const moment = require('moment');
-const remote = require('electron').remote;
+const Remote = require('electron').remote;
 const async = require('async');
 
 require('moment-duration-format');
@@ -15,26 +15,28 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
 
     $scope.bulkStopAll = function() {
 
-        async.eachSeries($scope.userDataContainer.users, function(user, callback) {
+        async.eachSeries($scope.userDataContainer.users,
+         function(user, callback) {
 
-            if (user.doing_now === false) {
-                return callback(null, user);
-            }
+             if (user.doing_now === false) {
+                 return callback(null, user);
+             }
 
-            var id = user.current_time_entry.id;
-            var apiToken = user.api_token;
-            var client = new TogglClient({apiToken: apiToken});
-            client.stopTimeEntry(id, function(err) {
+             var id = user.current_time_entry.id;
+             var apiToken = user.api_token;
+             var client = new TogglClient({apiToken: apiToken});
+             client.stopTimeEntry(id, function(err) {
                 if (err) {
                     return callback(err, null);
                 }
 
-                client.getUserData({with_related_data: true}, function(err, userData) {
+                client.getUserData({with_related_data: true},
+                function(err, userData) {
                     updateUserDataContainer(userData);
                     callback(err, user);
                 });
             });
-        }, function(err) {
+         }, function(err) {
             if (err) {
                 console.error(err);
             }
@@ -45,7 +47,8 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
         var taskname = $scope.taskName;
         if (taskname && taskname.length > 0) {
 
-            async.eachSeries($scope.userDataContainer.users, function(user, callback) {
+            async.eachSeries($scope.userDataContainer.users,
+            function(user, callback) {
 
                 var apiToken = user.api_token;
                 var client = new TogglClient({apiToken: apiToken});
@@ -53,7 +56,8 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
                     if (err) {
                         return callback(err, null);
                     }
-                    client.getUserData({with_related_data: true}, function(err, userData) {
+                    client.getUserData({with_related_data: true},
+                    function(err, userData) {
                         updateUserDataContainer(userData);
                         callback(err, user);
                     });
@@ -94,12 +98,13 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
 
         var saveScreenShot = function() {
             // Screenshot を取って保存する
-            remote.getCurrentWindow().capturePage(function(img) {
+            Remote.getCurrentWindow().capturePage(function(img) {
                 if (img.isEmpty()) {
                     return;
                 }
-                const fs = remote.require('fs');
-                fs.writeFile('/tmp/toggle-board-ss.png', img.toPng(), function(err) {
+                const fs = Remote.require('fs');
+                fs.writeFile('/tmp/toggle-board-ss.png', img.toPng(),
+                function(err) {
                     if (err) {
                         console.error(err);
                     }
@@ -154,22 +159,17 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
             .users
             .filter(function(u) {return u.doing_now;})
       .forEach(function(u) {
-          var range = new Date().getTime() - Date.parse(u.current_time_entry.start);
-          u.current_time_entry.duration_output =  moment.duration(range, 'ms').format('h [hrs], m [min], s [sec]');
+          var range = Date.range(Date.parse(u.current_time_entry.start));
+          u.current_time_entry.duration_output =  moment
+          .duration(range, 'ms')
+          .format('h [hrs], m [min], s [sec]');
       });
         }, 1000);
     })();
 
     var appendUserDataContainer = function(userData) {
-        var lastTimeEntry = userData.time_entries[userData.time_entries.length - 1];
-        var currentTimeEntry = null;
-        if (lastTimeEntry.duration < 0) {
-            currentTimeEntry = lastTimeEntry;
-            var range = new Date().getTime() - Date.parse(currentTimeEntry.start);
-            currentTimeEntry.duration_output = moment.duration(range, 'ms').format('h [hrs], m [min], s [sec]');
-        }
-        userData.current_time_entry = currentTimeEntry;
-        userData.doing_now = currentTimeEntry != null;
+        userData.current_time_entry = buildCurrentTimeEntry(userData);
+        userData.doing_now = userData.current_time_entry !== null;
         $scope.$apply(function() {
             $scope.userDataContainer.users.push(userData);
         });
@@ -182,17 +182,26 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
         if (index < 0) {
             return;
         }
-        var lastTimeEntry = userData.time_entries[userData.time_entries.length - 1];
+        userData.current_time_entry = buildCurrentTimeEntry(userData);
+        userData.doing_now = userData.current_time_entry !== null;
+        $scope.userDataContainer.users[index] = userData;
+    };
+
+    var buildCurrentTimeEntry = function(userData) {
+        var lastTimeEntry = userData
+        .time_entries[userData.time_entries.length - 1];
         var currentTimeEntry = null;
         if (lastTimeEntry.duration < 0) {
             currentTimeEntry = lastTimeEntry;
-            var range = new Date().getTime() - Date.parse(currentTimeEntry.start);
-            currentTimeEntry.duration_output = moment.duration(range, 'ms').format('h [hrs], m [min], s [sec]');
+            var range = Date.range(Date.parse(currentTimeEntry.start));
+            currentTimeEntry.duration_output = moment
+            .duration(range, 'ms')
+            .format('h [hrs], m [min], s [sec]');
         }
-        userData.current_time_entry = currentTimeEntry;
-        userData.doing_now = currentTimeEntry != null;
-        $scope.userDataContainer.users[index] = userData;
-
+        return currentTimeEntry;
     };
 });
 
+Date.prototype.range = function(d) {
+    return new Date().getTime() - d;
+};

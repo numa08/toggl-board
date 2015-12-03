@@ -65,7 +65,7 @@ app.on('ready', function() {
         };
 
         const filename = '/tmp/toggle-board-ss.png';
-        res.sendFile(filename, function(err) {
+        res.sendFile(filename, options, function(err) {
             if (err) {
                 console.error(err);
                 res.status(err.status).end();
