@@ -1,2 +1,4 @@
 scss:
   config_file: scss.yml
+jscs:
+  enable: false
