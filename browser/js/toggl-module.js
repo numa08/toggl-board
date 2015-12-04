@@ -6,6 +6,24 @@ const async = require('async');
 
 require('moment-duration-format');
 
+const TOKEN_KEY = 'net.numa08.toggl-board';
+
+var apiTokens = function() {
+    var savedTokens;
+    if (localStorage.getItem(TOKEN_KEY) === null) {
+        savedTokens = [];
+    } else {
+        savedTokens = JSON.parse(localStorage.getItem(TOKEN_KEY));
+    }
+    return savedTokens;
+};
+
+var addApiToken = function(token) {
+    var savedTokens = apiTokens();
+    savedTokens.push(token);
+    localStorage.setItem(TOKEN_KEY, JSON.stringify(savedTokens));
+};
+
 var togglBoard = angular.module('TogglBoard', ['ngDialog']);
 togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
 
@@ -88,8 +106,8 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
               console.error(err);
               return;
           }
-          localStorage.setItem(userData.fullname, userData.api_token);
 
+          addApiToken(userData.api_token);
           appendUserDataContainer(userData);
       });
     };
@@ -110,15 +128,6 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
                     }
                 });
             });
-        };
-
-        var apiTokens = function() {
-            var tokens = [];
-            for (var i = 0; i < localStorage.length; ++i) {
-                const key = localStorage.key(i);
-                tokens.push(localStorage.getItem(key));
-            }
-            return tokens;
         };
 
         async.eachSeries(apiTokens(), function(apiToken, callback) {
