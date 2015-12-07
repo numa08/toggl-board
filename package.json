@@ -6,6 +6,9 @@
   "scripts": {
     "start": "electron main/main.js",
     "postinstall": "bower install",
+    "lint-css": "scss-lint --config scss.yml; exit 0",
+    "lint-js": "jshint .; exit 0",
+    "lint": "npm run lint-css & npm run lint-js"
   },
   "repository": {
     "type": "git",
