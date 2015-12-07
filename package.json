@@ -4,7 +4,8 @@
   "description": "Show toggl status for team.",
   "main": "main/main.js",
   "scripts": {
-    "start": "electron main/main.js"
+    "start": "electron main/main.js",
+    "postinstall": "bower install",
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "toggl-api": "0.0.3"
   },
   "devDependencies": {
+    "bower": "^1.7.0",
     "electron-prebuilt": "^0.35.0",
     "jscs": "^2.6.0",
     "jshint": "^2.8.0"
