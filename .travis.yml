@@ -5,7 +5,8 @@ before_script:
 - npm install
 script:
 - make
-- if [[ ${TRAVIS_BRANCH} == "develop" ]];then BINTRAY_AUTHORICATE=${BINTRAY_AUTHORICATE} VERSION=$(./travis_version.sh) make destribute; fi 
+after_success:
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "develop" && make distribute
 
 env:
   global:
