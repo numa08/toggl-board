@@ -8,7 +8,8 @@
     "postinstall": "bower install",
     "lint:css": "scss-lint --config scss.yml || exit 0 # ignore error exit code",
     "lint:js": "jshint . || exit 0",
-    "lint": "npm-run-all lint:*"
+    "lint": "npm-run-all lint:*",
+    "build": "electron-packager ./ toggl-board --platform=all --arch=x64 --version=0.35.0 --overwrite --out=build --ignore=build"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "bower": "^1.7.0",
+    "electron-packager": "^5.1.1",
     "electron-prebuilt": "^0.35.0",
     "jscs": "^2.6.0",
     "jshint": "^2.8.0",

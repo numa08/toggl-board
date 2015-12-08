@@ -1,5 +1,5 @@
 build:
-	electron-packager ./ toggl-board --platform=all --arch=x64 --version=0.35.0 --overwrite --out=build --ignore=build
+	npm run build
 	zip -q -r build/toggl-board-darwin-x64.zip build/toggl-board-darwin-x64
 	zip -q -r build/toggl-board-linux-x64.zip build/toggl-board-linux-x64
 	zip -q -r build/toggl-board-win32-x64.zip build/toggl-board-win32-x64

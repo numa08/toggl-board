@@ -2,8 +2,7 @@ language: node_js
 node_js:
 - 5.1.0
 before_script:
-- npm install -g electron-packager bower
-- bower install
+- npm install
 script:
 - make
 - if [[ ${TRAVIS_BRANCH} == "develop" ]];then BINTRAY_AUTHORICATE=${BINTRAY_AUTHORICATE} VERSION=$(./travis_version.sh) make destribute; fi 
