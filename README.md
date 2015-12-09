@@ -1,16 +1,16 @@
  [ ![Download](https://api.bintray.com/packages/numa08/generic/toggl-board/images/download.svg) ](https://bintray.com/numa08/generic/toggl-board/_latestVersion)
 
-# Toggl board
+# Toggl Board
 
-Desctop Application for show your team member's [toggl](https://toggl.com/) status.
+Desktop Application to show your team member's [toggl](https://toggl.com/) status.
 
-# Instration
+# Installation
 
-## Downlod Application
+## Download Application
 
 There is newest build application.
 
-Please download binary for your architecture.
+Please download the binary file for your architecture.
 
  [ ![Download](https://api.bintray.com/packages/numa08/generic/toggl-board/images/download.svg) ](https://bintray.com/numa08/generic/toggl-board/_latestVersion)
  
