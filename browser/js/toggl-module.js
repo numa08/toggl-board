@@ -26,6 +26,15 @@ var addApiToken = function(token) {
     localStorage.setItem(TOKEN_KEY, JSON.stringify(savedTokens));
 };
 
+var isValidJSON = function(str) {
+     try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;  
+};
+
 var togglBoard = angular.module('TogglBoard', ['ngDialog']);
 togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
 
@@ -115,7 +124,10 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
     };
     
     $scope.exportFile = function() {
-        dialog.showSaveDialog({title: 'Export JSON', defaultPath: 'tokens.json'}, 
+        dialog.showSaveDialog({
+            title: 'Export JSON',
+            defaultPath: 'tokens.json'
+            }, 
         function(path) {
             var json = localStorage.getItem(TOKEN_KEY);
             fs.writeFile(path, json, function(err) {
@@ -127,7 +139,23 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
     };
     
     $scope.importFile = function() {
-        dialog.showOpenDialog({});
+        dialog.showOpenDialog({
+            title: 'Import JSON',
+            defaultPath: 'tokens.json',
+            properties: ['openFile']
+            },
+            function(path){
+                fs.readFile(path[0], 'utf8', function(err, data) {
+                    if(err) {
+                        console.error(err);
+                        return;
+                    }
+                    if(isValidJSON(data) && Array.isArray(JSON.parse(data))) {
+                        localStorage.setItem(TOKEN_KEY, data);
+                        location.reload(true);                    
+                    }
+                });
+            });
     };
 
     (function() {
