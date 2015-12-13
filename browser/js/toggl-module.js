@@ -3,6 +3,8 @@ const TogglClient = require('toggl-api');
 const moment = require('moment');
 const Remote = require('electron').remote;
 const async = require('async');
+const fs = Remote.require('fs');
+const dialog = Remote.require('dialog');
 
 require('moment-duration-format');
 
@@ -111,6 +113,22 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
           appendUserDataContainer(userData);
       });
     };
+    
+    $scope.exportFile = function() {
+        dialog.showSaveDialog({title: 'Export JSON', defaultPath: 'tokens.json'}, 
+        function(path) {
+            var json = localStorage.getItem(TOKEN_KEY);
+            fs.writeFile(path, json, function(err) {
+                if(err) {
+                    console.error(err);
+                }
+            });
+        });
+    };
+    
+    $scope.importFile = function() {
+        dialog.showOpenDialog({});
+    };
 
     (function() {
 
@@ -120,7 +138,6 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
                 if (img.isEmpty()) {
                     return;
                 }
-                const fs = Remote.require('fs');
                 fs.writeFile('/tmp/toggle-board-ss.png', img.toPng(),
                 function(err) {
                     if (err) {
