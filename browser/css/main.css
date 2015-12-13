@@ -99,3 +99,12 @@ a.bulk-button {
   padding: 0.25em 0.7em;
 }
 
+
+a.io-button {
+  background-color: #b5b6bb;
+  border-radius: 1em;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.8em;
+  padding: 0.25em 0.7em;
+}
