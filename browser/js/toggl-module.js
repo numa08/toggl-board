@@ -256,6 +256,6 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
     };
 });
 
-Date.prototype.range = function(d) {
+Date.range = function(d) {
     return new Date().getTime() - d;
 };
