@@ -26,6 +26,7 @@
 			<ul id="user-entries" ng-repeat="user in userDataContainer.users">
 				<li id="{{ user.fullname }}">
 					<div class="user-entry">
+                        <div><input type="checkbox" id="{{ user.id }}" ng-model="userIsSelected[user.id]"></div>
 						<div class="avatar-container">
 							<img src="{{ user.image_url }}" alt="" class="avater">
 						</div>
