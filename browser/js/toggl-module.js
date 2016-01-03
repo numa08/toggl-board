@@ -37,8 +37,8 @@ var isValidJSON = function(str) {
 
 var selectedUsers = function(users, selection) {
     return users.filter(function(u) {
-        return selection[u.id]
-    })
+        return selection[u.id];
+    });
 };
 
 var togglBoard = angular.module('TogglBoard', ['ngDialog']);
@@ -51,8 +51,8 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
     $scope.userIsSelected = {};
 
     $scope.bulkStopAll = function() {
-
-        async.eachSeries(selectedUsers($scope.userDataContainer.users, $scope.userIsSelected),
+        var users = selectedUsers($scope.userDataContainer.users, $scope.userIsSelected);
+        async.eachSeries(users,
          function(user, callback) {
 
              if (user.doing_now === false) {
@@ -83,8 +83,8 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
     $scope.bulkStartAll = function() {
         var taskname = $scope.taskName;
         if (taskname && taskname.length > 0) {
-
-            async.eachSeries(selectedUsers($scope.userDataContainer.users, $scope.userIsSelected),
+            var users = selectedUsers($scope.userDataContainer.users, $scope.userIsSelected);
+            async.eachSeries(users,
             function(user, callback) {
 
                 var apiToken = user.api_token;
