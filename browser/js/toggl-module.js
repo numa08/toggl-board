@@ -83,7 +83,8 @@ togglBoard.controller('TogglController', function($scope, $interval, ngDialog) {
     $scope.bulkStartAll = function() {
         var taskname = $scope.taskName;
         if (taskname && taskname.length > 0) {
-            var users = selectedUsers($scope.userDataContainer.users, $scope.userIsSelected);
+            var users = selectedUsers($scope.userDataContainer.users,
+                                      $scope.userIsSelected);
             async.eachSeries(users,
             function(user, callback) {
 
